@@ -65,6 +65,18 @@ class Session(models.Model):
                            inverse='_set_end_date')
     attendees_count = fields.Integer(compute='_get_attendees_count', store=True)
     color = fields.Float()
+    hours = fields.Float(
+            string="Duration in hours",
+            compute='_get_hours', inverse='_set_hours')
+
+    @api.depends('duration')
+    def _get_hours(self):
+        for r in self:
+            r.hours = r.duration * 24
+
+    def _set_hours(self):
+        for r in self:
+            r.hours = r.duration * 24
 
     @api.depends('attendee_ids')
     def _get_attendees_count(self):
