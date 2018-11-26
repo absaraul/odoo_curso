@@ -61,10 +61,10 @@ class Session(models.Model):
     duration = fields.Float(digits=(6, 2), help="Duration in days")
     seats = fields.Integer(string="Number of seats")
     instructor_id = fields.Many2one(
-            'res.partner', string='Instructor',
-            domain=[
-                '|', ('instructor ', '=', True),
-                ('category_id.name', 'ilike', 'Teacher')])
+        'res.partner', string='Instructor',
+        domain=[
+            '|', ('instructor ', '=', True),
+            ('category_id.name', 'ilike', 'Teacher')])
     course_id = fields.Many2one(
         'openacademy.course', ondelete='cascade',
         string="Course", required=True)
@@ -100,8 +100,7 @@ class Session(models.Model):
         for record in self.filtered('start_date'):
             start_date = fields.Date.from_string(record.start_date)
             record.end_date = (
-            start_date
-            + timedelta(days=record.duration, seconds=-1))
+                start_date + timedelta(days=record.duration, seconds=-1)                                    )
 
     def _set_end_date(self):
         for record in self.filtered('start_date'):
