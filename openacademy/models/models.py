@@ -42,7 +42,7 @@ class Course(models.Model):
         else:
             new_name = "Copy of %s (%s)"% (self.name, copied_count)
         default['name'] = new_name
-        #try:
+        # try:
         return super(Course, self).copy(default)
         #except IntegrityError:
 
