@@ -14,7 +14,6 @@ def get_uid(self, *a):
 class Course(models.Model):
     _name = 'openacademy.course'
 
-
     name = fields.Char(string="Title", required=True)
     description = fields.Text()
     responsible_id = fields.Many2one(
@@ -46,11 +45,12 @@ class Course(models.Model):
         if not copied_count:
             new_name = "Copy of %s" % (self.name)
         else:
-            new_name = _("Copy of %s (%s)") % (self.name, copied_count)
+            new_name = ("Copy of %s (%s)") % (self.name, copied_count)
         default['name'] = new_name
 # try:
         return super(Course, self).copy(default)
 # except IntegrityError:
+
 
 class Session(models.Model):
     _name = 'openacademy.session'
