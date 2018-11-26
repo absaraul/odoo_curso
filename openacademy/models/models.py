@@ -22,7 +22,8 @@ class Course(models.Model):
         index=True, ondelete='set null',
         # default=lambda self, *a: self.env.uid)
         default=get_uid)
-    session_ids = fields.One2many('openacademy.session', 'course_id')
+    session_ids = fields.One2many(
+        'openacademy.session', 'course_id', string="Sessions")
 
     _sql_constraints = [
         (
@@ -108,12 +109,12 @@ class Session(models.Model):
             end_date = fields.Date.from_string(record.end_date)
             record.duration = (end_date - start_date).days + 1
 
-    @api.depends('seats','attendee_ids')
+    @api.depends('seats', 'attendee_ids')
     def _taken_seats(self):
         for record in self.filtered(lambda r: r.seats):
             record.taken_seats = 100.0 * len(record.attendee_ids) / record.seats
 
-    @api.onchange('seats','attendee_ids')
+    @api.onchange('seats', 'attendee_ids')
     def _verify_valid_seats(self):
         if self.filtered(lambda r: r.seats < 0):
             self.active = False
@@ -133,7 +134,7 @@ class Session(models.Model):
                     }
             self.active = True
 
-    @api.constrains('instructor_id','attendee_ids')
+    @api.constrains('instructor_id', 'attendee_ids')
     def _check_instructor_not_in_attendees(self):
         for record in self.filtered('instructor_id'):
             if record.instructor_id in record.attendee_ids:
