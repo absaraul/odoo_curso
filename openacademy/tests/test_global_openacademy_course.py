@@ -1,15 +1,21 @@
 # -*- encoding: utf-8 -*-
 
 from psycopg2 import IntegrityError
+
 from openerp.tests.common import TransactionCase
+
 from openerp.tools import mute_logger
 
-class GlobalTestOpenaAcademyCourse(TransactionCase):
 
+class GlobalTestOpenaAcademyCourse(TransactionCase):
+    '''
+    Global test to openacademy course model.
+    Test create course and trigger contraints.
+    '''
     # Method seudo-constructor of test setUp
     def setUp(self):
         # Define global variables to test methods
-        super(GlobalTestOpenAcademyCourse,self).setUp()
+        super(GlobalTestOpenAcademyCourse, self).setUp()
         self.variable = 'hello world'
         self.course = self.env['openacademy.course']
 
@@ -55,7 +61,7 @@ class GlobalTestOpenaAcademyCourse(TransactionCase):
                 'duplicate key value violates unique'
                 ' constraint "openacademy_course_name_unique"'
             ):
-            new_id2 = self.create_course('test1','test_description', None)
+            new_id2 = self.create_course('test1', 'test_description', None)
             print ("new_id2", new_id2)
 
     def test_15_duplicate_course(self):
