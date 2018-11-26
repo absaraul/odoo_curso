@@ -16,9 +16,9 @@ class Course(models.Model):
     name = fields.Char(string="Title", required=True)
     description = fields.Text()
     responsible_id = fields.Many2one(
-        'res.users',string="Responsible",
+        'res.users', string="Responsible",
         index=True, ondelete='set null',
-        #default=lambda self, *a: self.env.uid)
+        # default=lambda self, *a: self.env.uid)
         default=get_uid)
     session_ids = fields.One2many('openacademy.session', 'course_id')
 
@@ -37,7 +37,7 @@ class Course(models.Model):
         if default is None:
             default = {}
         copied_count = self.search_count([
-            ('name','ilike','Copy of %s%%' % (self.name))])
+            ('name ',' ilike ',' Copy of %s%%' % (self.name))])
 
         if not copied_count:
             new_name = "Copy of %s" % (self.name)
@@ -46,7 +46,7 @@ class Course(models.Model):
         default['name'] = new_name
         # try:
         return super(Course, self).copy(default)
-        #except IntegrityError:
+        # except IntegrityError:
 
 class Session(models.Model):
     _name = 'openacademy.session'
@@ -56,8 +56,8 @@ class Session(models.Model):
     datetime_test = fields.Datetime(default=fields.Datetime.now)
     duration = fields.Float(digits=(6,2), help="Duration in days")
     seats = fields.Integer(string="Number of seats")
-    instructor_id = fields.Many2one('res.partner',string='Instructor',
-            domain=['|',('instructor','=',True),('category_id.name','ilike','Teacher')])
+    instructor_id = fields.Many2one('res.partner', string='Instructor',
+            domain=['|',('instructor ',' = ', True),('category_id.name ',' ilike ',' Teacher')])
     course_id = fields.Many2one('openacademy.course',ondelete='cascade',
                                 string="Course",required=True)
     attendee_ids = fields.Many2many('res.partner', string="Attendees")
