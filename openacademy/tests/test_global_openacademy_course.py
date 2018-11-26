@@ -33,7 +33,7 @@ class GlobalTestOpenaAcademyCourse(TransactionCase):
         To test contraint of name different to description
         '''
         with self.assertRaisesRegexp(
-                IntegrityError,,
+                IntegrityError,
                 'new row for relation "openacademy_course" violates'
                 ' check constraint "openacademy_course_name_description_check"i'
                 ):
