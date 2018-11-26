@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 
 
 from odoo import models, fields, api, exceptions
@@ -122,19 +121,19 @@ class Session(models.Model):
         if self.filtered(lambda r: r.seats < 0):
             self.active = False
             return {
-                    'warning':{
-                        'title': "Incorrect 'seats' value",
-                        'message': "The number of available seats may not be negative",
-                        }
-                    }
+                'warning': {
+                'title': "Incorrect 'seats' value",
+                'message': "The number of available seats may not be negative",
+                }
+                }
         if self.seats < len(self.attendee_ids):
             self.active = False
             return {
-                    'warning':{
-                        'title': "Too many attendees",
-                        'message': "Increase seats or remove excess attendees",
-                        }
-                    }
+                'warning': {
+                'title': "Too many attendees",
+                'message': "Increase seats or remove excess attendees",
+                }
+                }
             self.active = True
 
     @api.constrains('instructor_id', 'attendee_ids')
@@ -142,4 +141,4 @@ class Session(models.Model):
         for record in self.filtered('instructor_id'):
             if record.instructor_id in record.attendee_ids:
                 raise exceptions.ValidationError(
-                        "A session's instructor can't be an attendee")
+                    "A session's instructor can't be an attendee")
