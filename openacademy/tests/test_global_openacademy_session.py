@@ -1,0 +1,35 @@
+# -*- encoding: utf-8 -*-
+
+from openerp.test.common import TransactionCase
+from openerp.exceptions import ValidationError
+
+class GlobalTestOpenAcademySession(TransactionCase):
+    '''
+    This create global test to sessions
+    '''
+
+    # Seudo constructor method
+    def setUp(self):
+        super(GlobalTestOpenAcademySession, self).setup()
+        self.session = self.env['openacademy.session']
+        self.partner_vauxoo = self.env.ref('base.res_partner_23')
+        self.course = self.env.ref('openacademy.course1')
+
+    # Generic methods
+
+    # Test methods
+    def test_10_session_without_course(self):
+        '''
+        Check that raise of 'A session's instrcutor can't be an attendee'
+        '''
+        with self.assertRaisesRegexp(
+                ValidationError,
+                "A session's instructor can't be an attendee"
+            ):
+            self.session.create({
+                'name': 'Session test 1',
+                'seats': 1,
+                'instructor_id': self.partner_vauxoo.id,
+                'attendee_ids': [(6,0, [self.partner_vauxoo.id])],
+                'course_id': self.course.id,
+            })
