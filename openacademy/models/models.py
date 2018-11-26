@@ -1,5 +1,5 @@
-from odoo import models, fields, exceptions
-# api
+from odoo import models, fields, exceptions, api
+
 # import time
 # from psycopg2 import IntegrityError
 from datetime import timedelta
@@ -121,18 +121,18 @@ class Session(models.Model):
             self.active = False
             return {
                 'warning': {
-                'title': ("Incorrect 'seats' value"),
-                'message': (
-                    "The number of available seats may not be negative"),
+                    'title': ("Incorrect 'seats' value"),
+                    'message': (
+                        "The number of available seats may not be negative"),
                 }
             }
         if self.seats < len(self.attendee_ids):
             self.active = False
             return {
                 'warning': {
-                'title': ("Too many attendees"),
-                'message': (
-                    "Increase seats or remove excess attendees"),
+                    'title': ("Too many attendees"),
+                    'message': (
+                        "Increase seats or remove excess attendees"),
                 }
             }
         self.active = True
