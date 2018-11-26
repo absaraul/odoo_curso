@@ -1,15 +1,17 @@
 # -*- coding: utf-8 -*-
 
 from odoo import models, fields, api, exceptions
-import time
-from psycopg2 import IntegrityError
+#import time
+#from psycopg2 import IntegrityError
 from datetime import timedelta
 
 def get_uid(self, *a):
     return self.env.uid
 
+
 class Course(models.Model):
     _name = 'openacademy.course'
+
 
     name = fields.Char(string="Title", required=True)
     description = fields.Text()
