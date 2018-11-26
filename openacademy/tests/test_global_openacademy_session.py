@@ -1,7 +1,7 @@
 # -*- encoding: utf-8 -*-
 
-from openerp.test.common import TransactionCase
-from openerp.exceptions import ValidationError
+from odoo.tests.common import TransactionCase
+from odoo.exceptions import ValidationError
 
 class GlobalTestOpenAcademySession(TransactionCase):
     '''
