@@ -1,5 +1,6 @@
-from odoo import models, fields, exceptions, api
+# -*- coding: utf-8 -*-
 
+from odoo import models, fields, exceptions, api
 # import time
 # from psycopg2 import IntegrityError
 from datetime import timedelta
