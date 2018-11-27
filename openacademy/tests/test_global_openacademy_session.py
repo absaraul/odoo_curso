@@ -3,6 +3,7 @@
 from odoo.tests.common import TransactionCase
 from odoo.exceptions import ValidationError
 
+
 class GlobalTestOpenAcademySession(TransactionCase):
     '''
     This create global test to sessions
