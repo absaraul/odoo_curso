@@ -13,9 +13,9 @@ class GlobalTestOpenAcademySession(TransactionCase):
     def setUp(self):
         super(GlobalTestOpenAcademySession, self).setup()
         self.session = self.env['openacademy.session']
-        self.partner_vauxoo = self.env.ref('base.res_partner_3')
+        self.partner_vauxoo = self.env.ref('base.res_partner_2')
         self.course = self.env.ref('openacademy.course1')
-        self.partner_attendee = self.env.ref('base.res_partner_12')
+        self.partner_attendee = self.env.ref('base.res_partner_18')
 
     # Generic methods
 
