@@ -5,14 +5,14 @@ from odoo.tests.common import TransactionCase
 from odoo.tools import mute_logger
 
 
-class GlobalTestOpenaAcademyCourse(TransactionCase):
+class GlobalTestOpenAcademyCourse(TransactionCase):
     '''
     Global test to openacademy course model.
     Test create course and trigger contraints.
     '''
     # Method seudo-constructor of test setUp
     def setUp(self):
-        # Define global variables to test methods
+        # Define global variables to test method
         super(GlobalTestOpenAcademyCourse, self).setUp()
         self.course = self.env['openacademy.course']
 
