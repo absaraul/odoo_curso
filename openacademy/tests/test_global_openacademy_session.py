@@ -20,7 +20,7 @@ class GlobalTestOpenAcademySession(TransactionCase):
     # Generic methods
 
     # Test methods
-    def test_10_session_without_course(self):
+    def test_10_instructor_is_attende(self):
         '''
         Check that raise of 'A session's instructor can't be an attendee'
         '''
