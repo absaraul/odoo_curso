@@ -1,11 +1,7 @@
 # -*- encoding: utf-8 -*-
 
 from psycopg2 import IntegrityError
-
-
 from odoo.tests.common import TransactionCase
-
-
 from odoo.tools import mute_logger
 
 
@@ -18,7 +14,6 @@ class GlobalTestOpenaAcademyCourse(TransactionCase):
     def setUp(self):
         # Define global variables to test methods
         super(GlobalTestOpenAcademyCourse, self).setUp()
-        self.variable = 'hello world'
         self.course = self.env['openacademy.course']
 
     # Method of class that don't is test
