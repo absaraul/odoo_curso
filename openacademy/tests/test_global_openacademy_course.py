@@ -2,9 +2,9 @@
 
 from psycopg2 import IntegrityError
 
-from openerp.tests.common import TransactionCase
+from odoo.tests.common import TransactionCase
 
-from openerp.tools import mute_logger
+from odoo.tools import mute_logger
 
 
 class GlobalTestOpenaAcademyCourse(TransactionCase):
@@ -52,7 +52,6 @@ class GlobalTestOpenaAcademyCourse(TransactionCase):
         Test to create two courses with same name.
         To raise constraint of unique name
         '''
-
 
         new_id = self.create_course('test1', 'test_description', None)
         print ("new_id: %s", new_id)
