@@ -29,22 +29,22 @@ class GlobalTestOpenAcademyCourse(TransactionCase):
     # Method of test startswith 'def test_*(self):'
 
     # Mute the error openerp.sql_db to don't to avoid it in log
-    @mute_logger('openerp.sql_db')
-    def test_01_same_name_description(self):
+    @mute_logger('odoo.sql_db')
+    def test_10_same_name_description(self):
         '''
         Test create a course with same name and description.
         To test contraint of name different to description
         '''
         with self.assertRaisesRegexp(
                 IntegrityError,
-                'new row for relation "openacademy_course" violates'
-                ' check constraint "openacademy_course_name_description_check"'
-        ):
+                'new row for relation "openacademy_course" violates check'
+                ' constraint "openacademy_course_name_description_check"'
+                ):
             # Create a course with same name and description to raise error
             self.create_course('test', 'test', None)
 
-    @mute_logger('openerp.sql_db')
-    def test_02_two_courses_same_name(self):
+    @mute_logger('odoo.sql_db')
+    def test_20_two_courses_same_name(self):
         '''
         Test to create two courses with same name.
         To raise constraint of unique name
@@ -52,6 +52,7 @@ class GlobalTestOpenAcademyCourse(TransactionCase):
 
         new_id = self.create_course('test1', 'test_description', None)
         print("new_id: %s", new_id)
+
         with self.assertRaisesRegexp(
                 IntegrityError,
                 'duplicate key value violates unique'
