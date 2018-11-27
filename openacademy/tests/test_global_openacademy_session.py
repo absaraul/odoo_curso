@@ -3,7 +3,6 @@
 from odoo.tests.common import TransactionCase
 from odoo.exceptions import ValidationError
 
-
 class GlobalTestOpenAcademySession(TransactionCase):
     '''
     This create global test to sessions
@@ -21,7 +20,7 @@ class GlobalTestOpenAcademySession(TransactionCase):
     # Test methods
     def test_10_session_without_course(self):
         '''
-        Check that raise of 'A session's instrcutor can't be an attendee'
+        Check that raise of 'A session's instructor can't be an attendee'
         '''
         with self.assertRaisesRegexp(
             ValidationError,
